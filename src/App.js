@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet';
 import './App.css';
+import ShowLyrics from './ShowLyrics';
 
 function App() {
 	return (
@@ -25,7 +26,7 @@ function App() {
 				{/* link elements */}
 				<link rel='canonical' href='https://keep-a-note.web.app/' />
 			</Helmet>
-			Hello World
+			<ShowLyrics />
 		</div>
 	);
 }
