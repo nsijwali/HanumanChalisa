@@ -11,6 +11,17 @@ body {
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	background-size: cover;
-	color: #fff;
 	background-position: center top;
+	scroll-behavior: smooth;
+}
+
+@media screen and (max-width: 600px) {
+	body {
+		background-image: linear-gradient(
+				to bottom,
+				rgba(245, 246, 252, 0.5),
+				rgba(61, 59, 61, 0.5)
+			),
+			url('Static/images/hanuman_hindi.jpg');
+	}
 }
