@@ -5,6 +5,7 @@
 .chopai {
 	padding: 0.25rem;
 	font-style: italic;
+	color: #fff;
 }
 .select__lang {
 	position: fixed;
@@ -20,7 +21,6 @@
 @media screen and (min-width: 601px) {
 	.chopai {
 		font-size: 1.25rem;
-		color: #fff;
 	}
 }
 
@@ -28,6 +28,8 @@
 @media screen and (max-width: 600px) {
 	.chopai {
 		font-size: 12px;
-		color: #fff;
+	}
+	.select__lang {
+		font-size: 12px;
 	}
 }

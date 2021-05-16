@@ -28,6 +28,10 @@ function App() {
 
 				{/* link elements */}
 				<link rel='canonical' href='https://hanumanchalisa.netlify.app/' />
+				<link
+					href='https://fonts.googleapis.com/css?family=Roboto'
+					rel='stylesheet'
+				></link>
 			</Helmet>
 			<ShowLyrics />
 		</div>
