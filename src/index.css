@@ -8,7 +8,7 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background-image: url('static/images/hanuman_hindi.jpg');
+	background-image: url('Static/images/hanuman_hindi.jpg');
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -21,6 +21,6 @@ body {
 
 @media screen and (max-width: 600px) {
 	body {
-		background-image: url('static/images/hanuman_ji.jpg');
+		background-image: url('Static/images/hanuman_ji.jpg');
 	}
 }
