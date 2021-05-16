@@ -1,0 +1,16 @@
+.footer {
+	height: 3rem;
+	background: transparent
+		radial-gradient(
+			closest-side at 50% 50%,
+			#383838 0%,
+			#1f1f1f 34%,
+			#000000 100%
+		)
+		0% 0% no-repeat padding-box;
+	scroll-behavior: smooth;
+	display: flex;
+	width: 100vw;
+	justify-content: center;
+	align-items: center;
+}
