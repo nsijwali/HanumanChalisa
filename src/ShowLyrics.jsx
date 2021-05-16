@@ -10,7 +10,9 @@ const ShowLyrics = () => {
 	const [dohaBottom, setBottomDoha] = useState([]);
 	const [chopai, setChopai] = useState([]);
 	const [lang, setlang] = useState('english');
+	const [buttonText, setButtonText] = useState('Play');
 	const audioRef = useRef(null);
+	const btnRef = useRef(null);
 	const languages = [
 		{
 			lable: 'Hindi',
@@ -96,11 +98,22 @@ const ShowLyrics = () => {
 		setTopDoha(lyrics?.[lang]?.dohaTop.split('.'));
 		setChopai(lyrics?.[lang]?.chopai.split('.'));
 		setBottomDoha(lyrics?.[lang]?.dohaBottom.split('.'));
-		audioRef.current.play();
 	}, [lang]);
+
+	useEffect(() => {
+		if (buttonText === 'Play') {
+			audioRef.current.pause();
+		} else {
+			audioRef.current.play();
+		}
+	}, [buttonText]);
 
 	const handleLangChange = (e) => {
 		setlang(e.target.value);
+	};
+
+	const handleButtonClick = () => {
+		setButtonText(buttonText === 'Play' ? 'Pause' : 'Play');
 	};
 
 	return (
@@ -139,7 +152,9 @@ const ShowLyrics = () => {
 				<source src={music} type='audio/mpeg' />
 				Your browser does not support the audio element.
 			</audio>
-
+			<button ref={btnRef} className='audio__btn' onClick={handleButtonClick}>
+				{buttonText}
+			</button>
 			<Footer text={footerText[lang]} />
 		</>
 	);
