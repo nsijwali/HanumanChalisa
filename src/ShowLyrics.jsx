@@ -10,7 +10,6 @@ const ShowLyrics = () => {
 	const [chopai, setChopai] = useState([]);
 	const [lang, setlang] = useState('english');
 	const audioRef = useRef(null);
-	const bodyRef = useRef(null);
 	const languages = [
 		{
 			lable: 'Hindi',
