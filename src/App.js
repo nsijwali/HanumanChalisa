@@ -1,10 +1,11 @@
 import { Helmet } from 'react-helmet';
 import './App.css';
 import ShowLyrics from './ShowLyrics';
+import ScrollTop from './ScrollTop';
 
 function App() {
 	return (
-		<div className='App'>
+		<div className='App night'>
 			<Helmet>
 				{/* html attributes */}
 				<html lang='en' />
@@ -34,6 +35,7 @@ function App() {
 				></link>
 			</Helmet>
 			<ShowLyrics />
+			<ScrollTop />
 		</div>
 	);
 }

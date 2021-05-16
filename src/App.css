@@ -1,5 +1,6 @@
 .App {
 	text-align: center;
+	padding-top: 2rem;
 }
 
 audio {
@@ -19,6 +20,11 @@ audio {
 	border-radius: 0.25rem;
 	padding: 2px;
 	font-size: 1rem;
+	background: #383838;
+	color: #fff;
+}
+.select__lang:focus-visible {
+	outline: none;
 }
 
 @media screen and (min-width: 601px) {
