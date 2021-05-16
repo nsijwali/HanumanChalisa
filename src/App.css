@@ -2,6 +2,9 @@
 	text-align: center;
 }
 
+audio {
+	visibility: hidden;
+}
 .chopai {
 	padding: 0.25rem;
 	font-style: italic;

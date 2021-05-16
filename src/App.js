@@ -16,7 +16,7 @@ function App() {
 				<title>Hanuman Chalisa</title>
 
 				{/* base element */}
-				<base target='_blank' href='https://hanumanchalisa.netlify.app/' />
+				{/* <base target='_blank' href='https://hanumanchalisa.netlify.app/' /> */}
 
 				{/* meta elements */}
 				<meta
