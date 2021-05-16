@@ -46,7 +46,7 @@ audio {
 	right: 10rem;
 	height: 2rem;
 	width: 4rem;
-	border: 1px solid #f5f5f5;
+	border: 1px solid rgb(118, 118, 118);
 	background-color: transparent;
 	color: #f5f5f5;
 	border-radius: 0.25rem;
