@@ -1,6 +1,6 @@
 module.exports = {
 	hindi: {
-		doha: `श्रीगुरु चरन सरोज रज, निज मनु मुकुरु सुधारि.
+		dohaTop: `श्रीगुरु चरन सरोज रज, निज मनु मुकुरु सुधारि.
 बरनऊं रघुबर बिमल जसु, जो दायकु फल चारि.`,
 		chopai: `जय हनुमान ज्ञान गुन सागर,
 जय कपीस तिहुं लोक उजागर.
@@ -121,9 +121,11 @@ module.exports = {
  
 तुलसीदास सदा हरि चेरा,
 कीजै नाथ हृदय मंह डेरा.`,
+		dohaBottom: `पवन तनय संकट हरन, मंगल मूरति रूप.
+राम लखन सीता सहित, हृदय बसहु सुर भूप.`,
 	},
 	english: {
-		doha: `Sri Guru Charan Saroj Raj Nij Man Mukur Sudhari, Baranau Raghuvar Bimal Jasu Jo Dayaku Ohal Chari.
+		dohaTop: `Sri Guru Charan Saroj Raj Nij Man Mukur Sudhari, Baranau Raghuvar Bimal Jasu Jo Dayaku Ohal Chari.
 
 Buddhiheen Tanu Janike Sumarau Pavan Kumar, Bal Buddhi Vidya Dehu Mohi Harau Kalesh Vikar.`,
 		chopai: `Jai Hanuman gyan gun sagar,
@@ -284,5 +286,8 @@ Hoye siddhi sakhi Gaurisa.
 Tulsidas sada hari chera,
 
 Keejai nath hridaye mein dera.`,
+		dohaBottom: `Pavan tanay sankat harana, Mangal moorati roop.
+
+Ram Lakhan Sita sahit, Hridaya basahu sur bhoop.`,
 	},
 };

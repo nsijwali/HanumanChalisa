@@ -3,12 +3,14 @@ import lyrics from './lyrics';
 import './App.css';
 
 const ShowLyrics = () => {
-	const [doha, setDoha] = useState([]);
+	const [dohaTop, setTopDoha] = useState([]);
+	const [dohaBottom, setBottomDoha] = useState([]);
 	const [chopai, setChopai] = useState([]);
 	const [lang, setlang] = useState('english');
 	useEffect(() => {
-		setDoha(lyrics?.[lang]?.doha.split('.'));
+		setTopDoha(lyrics?.[lang]?.dohaTop.split('.'));
 		setChopai(lyrics?.[lang]?.chopai.split('.'));
+		setBottomDoha(lyrics?.[lang]?.dohaBottom.split('.'));
 	}, [lang]);
 
 	const handleLangChange = (e) => {
@@ -18,7 +20,7 @@ const ShowLyrics = () => {
 	return (
 		<>
 			<h3>Doha</h3>
-			{doha.map((para) => (
+			{dohaTop.map((para) => (
 				<pre className='chopai'>
 					<p>{para.split(',')[0]}</p>
 					<p>{para.split(',')[1]}</p>
@@ -26,6 +28,13 @@ const ShowLyrics = () => {
 			))}
 			<h3>Chopai</h3>
 			{chopai.map((para) => (
+				<pre className='chopai'>
+					<p>{para.split(',')[0]}</p>
+					<p>{para.split(',')[1]}</p>
+				</pre>
+			))}
+			<h3>Doha</h3>
+			{dohaBottom.map((para) => (
 				<pre className='chopai'>
 					<p>{para.split(',')[0]}</p>
 					<p>{para.split(',')[1]}</p>
