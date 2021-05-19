@@ -3,7 +3,7 @@ import lyrics from './lyrics';
 import './App.css';
 import './star.css';
 import music from './Static/mp3/mahadev-music.mp3';
-import Footer from './Footer';
+// import Footer from './Footer';
 
 const ShowLyrics = () => {
 	const [dohaTop, setTopDoha] = useState([]);
