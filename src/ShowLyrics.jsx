@@ -122,22 +122,22 @@ const ShowLyrics = () => {
 			<div id='stars2'></div>
 			<div id='stars3'></div> */}
 			<h3 className='chopai'>{translator[lang]?.doha || 'Doha'}</h3>
-			{dohaTop.map((para) => (
-				<pre className='chopai'>
+			{dohaTop.map((para, index) => (
+				<pre className='chopai' key={index}>
 					<p>{para.split(',')[0]}</p>
 					<p>{para.split(',')[1]}</p>
 				</pre>
 			))}
 			<h3 className='chopai'>{translator[lang]?.chopai || 'Doha'}</h3>
-			{chopai.map((para) => (
-				<pre className='chopai'>
+			{chopai.map((para, index) => (
+				<pre className='chopai' key={index}>
 					<p>{para.split(',')[0]}</p>
 					<p>{para.split(',')[1]}</p>
 				</pre>
 			))}
 			<h3 className='chopai'>{translator[lang]?.doha || 'Doha'}</h3>
-			{dohaBottom.map((para) => (
-				<pre className='chopai'>
+			{dohaBottom.map((para, index) => (
+				<pre className='chopai' key={index}>
 					<p>{para.split(',')[0]}</p>
 					<p>{para.split(',')[1]}</p>
 				</pre>
@@ -145,7 +145,9 @@ const ShowLyrics = () => {
 
 			<select className='select__lang' onChange={handleLangChange} value={lang}>
 				{languages.map((lan) => (
-					<option value={lan.value}>{lan.lable}</option>
+					<option value={lan.value} key={lan.value}>
+						{lan.lable}
+					</option>
 				))}
 			</select>
 			<audio controls loop ref={audioRef} className='audio' autoPlay>
