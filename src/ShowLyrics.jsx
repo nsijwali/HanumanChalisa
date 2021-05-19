@@ -157,7 +157,7 @@ const ShowLyrics = () => {
 			<button ref={btnRef} className='audio__btn' onClick={handleButtonClick}>
 				{buttonText}
 			</button>
-			<Footer text={footerText[lang]} />
+			{/* <Footer text={footerText[lang]} /> */}
 		</>
 	);
 };
