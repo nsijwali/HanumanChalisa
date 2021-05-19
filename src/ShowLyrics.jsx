@@ -3,7 +3,7 @@ import lyrics from './lyrics';
 import './App.css';
 import './star.css';
 import music from './Static/mp3/mahadev-music.mp3';
-// import Footer from './Footer';
+import Footer from './Footer';
 
 const ShowLyrics = () => {
 	const [dohaTop, setTopDoha] = useState([]);
@@ -83,16 +83,16 @@ const ShowLyrics = () => {
 		},
 	};
 
-	// const footerText = {
-	// 	english: 'Created with love by Nitin Sijwali',
-	// 	hindi: 'नितिन सिजवाली द्वारा प्यार से बनाया गया',
-	// 	bengali: 'প্রেম দিয়ে তৈরি করেছেন নিতিন সিজওয়ালি',
-	// 	oriya: 'ନିତିନ ସିଜୱାଲୀଙ୍କ ଦ୍ୱାରା ପ୍ରେମ ସହିତ ସୃଷ୍ଟି |',
-	// 	kannada: 'ಪ್ರೀತಿಯಿಂದ ನಿತಿನ್ ಸಿಜ್ವಾಲಿ ರಚಿಸಿದ್ದಾರೆ',
-	// 	tamil: 'நிதின் சிஜ்வாலி அன்பால் உருவாக்கப்பட்டது',
-	// 	telgu: 'నితిన్ సిజ్వాలి ప్రేమతో సృష్టించారు',
-	// 	konkani: 'नितिन सिजवाली द्वारा प्यार से बनाया गया',
-	// };
+	const footerText = {
+		english: 'Created with love by Nitin Sijwali',
+		hindi: 'नितिन सिजवाली द्वारा प्यार से बनाया गया',
+		bengali: 'প্রেম দিয়ে তৈরি করেছেন নিতিন সিজওয়ালি',
+		oriya: 'ନିତିନ ସିଜୱାଲୀଙ୍କ ଦ୍ୱାରା ପ୍ରେମ ସହିତ ସୃଷ୍ଟି |',
+		kannada: 'ಪ್ರೀತಿಯಿಂದ ನಿತಿನ್ ಸಿಜ್ವಾಲಿ ರಚಿಸಿದ್ದಾರೆ',
+		tamil: 'நிதின் சிஜ்வாலி அன்பால் உருவாக்கப்பட்டது',
+		telgu: 'నితిన్ సిజ్వాలి ప్రేమతో సృష్టించారు',
+		konkani: 'नितिन सिजवाली द्वारा प्यार से बनाया गया',
+	};
 
 	useEffect(() => {
 		setTopDoha(lyrics?.[lang]?.dohaTop.split('.'));
@@ -157,7 +157,7 @@ const ShowLyrics = () => {
 			<button ref={btnRef} className='audio__btn' onClick={handleButtonClick}>
 				{buttonText}
 			</button>
-			{/* <Footer text={footerText[lang]} /> */}
+			<Footer text={footerText[lang]} />
 		</>
 	);
 };

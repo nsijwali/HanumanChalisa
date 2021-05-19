@@ -10,7 +10,6 @@
 		0% 0% no-repeat padding-box;
 	scroll-behavior: smooth;
 	display: flex;
-	width: 100vw;
 	justify-content: center;
 	align-items: center;
 }
