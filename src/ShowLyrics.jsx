@@ -118,9 +118,9 @@ const ShowLyrics = () => {
 
 	return (
 		<>
-			<div id='stars'></div>
+			{/* <div id='stars'></div>
 			<div id='stars2'></div>
-			<div id='stars3'></div>
+			<div id='stars3'></div> */}
 			<h3 className='chopai'>{translator[lang]?.doha || 'Doha'}</h3>
 			{dohaTop.map((para) => (
 				<pre className='chopai'>
