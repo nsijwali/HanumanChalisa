@@ -1,74 +1,83 @@
-.App {
-	text-align: center;
-	padding-top: 2rem;
-	background-image: url('Static/images/hanuman_hindi.jpg');
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
-	background-position: center top;
-	/* scroll-behavior: smooth; */
-	color: #f5f5f5;
-	width: 100vw;
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap');
+:root { --ink:#2b1b16; --muted:#765f54; --saffron:#bf571e; --deep-saffron:#8e3519; --gold:#d59d38; --paper:#f8f1e6; --paper-bright:#fffaf2; --line:rgba(109,69,43,.18); }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; background:var(--paper); color:var(--ink); font-family:'DM Sans',sans-serif; }
+button, select { font:inherit; }
+.App { min-height:100vh; background:var(--paper); }
+.site-shell { position:relative; min-height:100vh; overflow:hidden; }
+#stars,#stars2,#stars3 { display:none; }
+.topbar { position:sticky; top:0; z-index:10; display:flex; align-items:center; justify-content:space-between; min-height:76px; padding:0 clamp(20px,6vw,96px); background:rgba(248,241,230,.9); border-bottom:1px solid var(--line); backdrop-filter:blur(14px); }
+.brand { display:flex; align-items:center; gap:12px; color:var(--ink); text-decoration:none; }
+.brand-mark { display:flex; align-items:center; justify-content:center; width:44px; height:44px; padding-bottom:2px; border:1px solid var(--gold); border-radius:50%; color:var(--saffron); font-family:'Noto Serif Devanagari',serif; font-size:25px; line-height:1; }
+.brand strong,.brand small { display:block; line-height:1; }
+.brand strong { font-size:15px; letter-spacing:.02em; }
+.brand small { margin-top:4px; color:var(--muted); font-size:11px; letter-spacing:.14em; text-transform:uppercase; }
+.topbar-actions { display:flex; align-items:center; gap:14px; }
+.language-control { display:flex; align-items:center; gap:8px; color:var(--muted); font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
+.select-shell { position:relative; display:block; }
+.language-control select { appearance:none; min-width:140px; padding:11px 38px 11px 14px; border:1px solid rgba(109,69,43,.24); border-radius:9px; outline:none; background:var(--paper-bright); color:var(--ink); cursor:pointer; box-shadow:0 2px 0 rgba(109,69,43,.04); }
+.language-control select:focus { border-color:var(--saffron); box-shadow:0 0 0 3px rgba(191,87,30,.12); }
+.select-chevron { position:absolute; top:50%; right:13px; transform:translateY(-58%); color:var(--saffron); font-size:18px; line-height:1; pointer-events:none; }
+.audio__btn { display:inline-flex; align-items:center; gap:8px; min-height:40px; padding:0 15px; border:0; border-radius:7px; background:var(--saffron); color:white; font-size:12px; font-weight:700; cursor:pointer; box-shadow:0 6px 14px rgba(142,53,25,.18); transition:transform .2s,background .2s; }
+.audio__btn:hover { transform:translateY(-1px); background:var(--deep-saffron); }
+.play-icon { width:0; height:0; border-top:5px solid transparent; border-bottom:5px solid transparent; border-left:7px solid white; }
+.pause-icon { width:9px; height:11px; border-right:3px solid white; border-left:3px solid white; }
+.audio { display:none; }
+.content-wrap { position:relative; z-index:1; width:min(1120px,calc(100% - 40px)); margin:0 auto; padding:52px 0 88px; }
+.hero-panel { display:grid; grid-template-columns:1.1fr .9fr; min-height:390px; overflow:hidden; border-radius:18px; background:var(--deep-saffron); color:#fff6e9; box-shadow:0 18px 40px rgba(72,34,17,.13); }
+.hero-copy { padding:clamp(34px,6vw,74px); background:linear-gradient(122deg,#8d3218,#b5521c); }
+.eyebrow { margin:0 0 14px; color:var(--gold); font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+.hero-copy h1 { display:flex; flex-direction:column; align-items:flex-start; gap:5px; margin:0; font-family:'Noto Serif Devanagari','Libre Baskerville',serif; font-size:clamp(42px,6vw,72px); font-weight:500; line-height:1.16; letter-spacing:-.03em; }
+.hero-copy h1 span,.hero-copy h1 em { display:block; }
+.hero-copy h1 em { color:#ffd37e; font-style:normal; line-height:1.1; }
+.hero-description { max-width:390px; margin:26px 0 30px; color:rgba(255,246,233,.78); font-family:'Libre Baskerville',serif; font-size:15px; line-height:1.7; }
+.hero-meta { display:flex; align-items:center; gap:11px; color:rgba(255,246,233,.65); font-size:12px; }
+.hero-meta b { color:#fff; font-size:18px; }
+.meta-dot { color:#e9ae56; font-size:18px; }
+.hero-art { position:relative; min-height:310px; overflow:hidden; background:linear-gradient(180deg,rgba(72,25,15,.06),rgba(45,15,9,.76)),url('Static/images/hanuman_eng.jpg') center 28%/cover; }
+.hero-art:after { position:absolute; inset:0; background:linear-gradient(90deg,rgba(142,53,25,.2),transparent 40%); content:''; }
+.sun-disc { position:absolute; top:32px; right:40px; width:90px; height:90px; border:1px solid rgba(255,211,126,.7); border-radius:50%; box-shadow:0 0 0 14px rgba(255,211,126,.08),0 0 70px rgba(255,211,126,.28); }
+.art-caption { position:absolute; right:32px; bottom:24px; z-index:2; color:#ffd37e; font-family:'Noto Serif Devanagari',serif; font-size:28px; line-height:1; text-align:right; }
+.art-caption small { color:rgba(255,246,233,.8); font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:.16em; text-transform:uppercase; }
+.reading-header { display:flex; align-items:end; justify-content:space-between; padding:74px 4px 24px; border-bottom:1px solid var(--line); }
+.reading-header .eyebrow { margin-bottom:8px; color:var(--saffron); }
+h2 { margin:0; color:var(--ink); font-family:'Libre Baskerville',serif; font-size:clamp(24px,3vw,34px); font-weight:400; }
+.reading-note { color:var(--muted); font-family:'Libre Baskerville',serif; font-size:12px; font-style:italic; line-height:1.6; text-align:right; }
+.doha-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; padding:24px 0 12px; }
+.verse-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 16px; padding:26px 0; }
+.verse-card { position:relative; display:flex; gap:18px; min-height:118px; padding:24px 22px; border:1px solid var(--line); border-radius:10px; background:rgba(255,250,242,.66); transition:border-color .2s,transform .2s,box-shadow .2s; }
+.verse-card:hover { border-color:rgba(191,87,30,.45); transform:translateY(-2px); box-shadow:0 10px 22px rgba(72,34,17,.07); }
+.verse-number { flex:0 0 24px; padding-top:2px; color:var(--gold); font-size:11px; font-weight:700; letter-spacing:.08em; }
+.verse-lines { color:var(--ink); font-family:'Libre Baskerville','Noto Serif Devanagari',serif; font-size:14px; line-height:1.75; }
+.verse-lines p { margin:0; }
+.verse-lines p+p { color:var(--muted); }
+.section-divider { display:flex; align-items:center; gap:18px; padding:76px 4px 0; }
+.section-divider:before,.section-divider:after { flex:1; height:1px; background:var(--line); content:''; }
+.section-divider span { color:var(--gold); font-size:14px; }
+.section-divider h2 { font-family:'Noto Serif Devanagari','Libre Baskerville',serif; font-size:23px; }
+.section-divider.closing { padding-top:30px; }
+@media (max-width:720px) {
+ .topbar { align-items:flex-start; gap:16px; padding:14px 20px; }
+ .topbar-actions { align-items:flex-end; flex-direction:column; gap:8px; }
+ .language-control span { display:none; }
+ .language-control select { min-width:122px; padding:9px 32px 9px 10px; }
+ .audio__btn { min-height:34px; padding:0 11px; }
+ .content-wrap { width:min(100% - 28px,620px); padding-top:24px; }
+ .hero-panel { display:block; }
+ .hero-copy { padding:34px 28px 40px; }
+ .hero-art { min-height:230px; }
+ .reading-header { padding-top:50px; }
+ .doha-grid,.verse-grid { grid-template-columns:1fr; }
+ .verse-card { min-height:0; padding:20px 17px; }
+ .verse-lines { font-size:14px; }
 }
-@media screen and (max-width: 600px) {
-	.App {
-		background-image: url('Static/images/hanuman_ji.jpg');
-		background-size: cover;
-	}
-}
-
-audio {
-	visibility: hidden;
-}
-.chopai {
-	padding: 0.25rem;
-	font-style: italic;
-	color: #fff;
-}
-.select__lang {
-	position: fixed;
-	top: 1rem;
-	right: 1rem;
-	width: 7rem;
-	height: 2rem;
-	border-radius: 0.25rem;
-	padding: 2px;
-	font-size: 1rem;
-	background: transparent;
-	color: #fff;
-}
-.select__lang:focus-visible {
-	outline: none;
-}
-
-.audio__btn {
-	position: fixed;
-	top: 1rem;
-	right: 10rem;
-	height: 2rem;
-	width: 4rem;
-	border: 1px solid rgb(118, 118, 118);
-	background-color: transparent;
-	color: #f5f5f5;
-	border-radius: 0.25rem;
-	z-index: 2;
-}
-
-@media screen and (min-width: 601px) {
-	.chopai {
-		font-size: 1.25rem;
-	}
-}
-
-/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
-@media screen and (max-width: 600px) {
-	.chopai {
-		font-size: 12px;
-	}
-	.select__lang {
-		font-size: 12px;
-	}
-	.audio__btn {
-		left: 1rem;
-	}
+@media (max-width:420px) {
+ .brand small { display:none; }
+ .topbar-actions { flex:1; }
+ .language-control select { max-width:94px; }
+ .hero-copy h1 { font-size:42px; }
+ .hero-description { font-size:13px; }
+ .reading-header { align-items:flex-start; flex-direction:column; gap:14px; }
+ .reading-note { text-align:left; }
 }

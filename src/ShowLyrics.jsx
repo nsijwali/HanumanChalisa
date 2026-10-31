@@ -12,7 +12,6 @@ const ShowLyrics = () => {
 	const [lang, setlang] = useState('english');
 	const [buttonText, setButtonText] = useState('Play');
 	const audioRef = useRef(null);
-	const btnRef = useRef(null);
 	const languages = [
 		{
 			lable: 'Hindi',
@@ -95,16 +94,18 @@ const ShowLyrics = () => {
 	};
 
 	useEffect(() => {
-		setTopDoha(lyrics?.[lang]?.dohaTop.split('.'));
-		setChopai(lyrics?.[lang]?.chopai.split('.'));
-		setBottomDoha(lyrics?.[lang]?.dohaBottom.split('.'));
+		const groups = (value = '') => value.split(/\n\s*\n/).map((group) => group.trim()).filter(Boolean);
+		setTopDoha(groups(lyrics?.[lang]?.dohaTop));
+		setChopai(groups(lyrics?.[lang]?.chopai));
+		setBottomDoha(groups(lyrics?.[lang]?.dohaBottom));
 	}, [lang]);
 
 	useEffect(() => {
+		if (!audioRef.current) return;
 		if (buttonText === 'Play') {
 			audioRef.current.pause();
 		} else {
-			audioRef.current.play();
+			audioRef.current.play().catch(() => setButtonText('Play'));
 		}
 	}, [buttonText]);
 
@@ -116,49 +117,74 @@ const ShowLyrics = () => {
 		setButtonText(buttonText === 'Play' ? 'Pause' : 'Play');
 	};
 
+	const renderVerse = (verse, index) => {
+		const lines = verse.split(',').map((line) => line.trim()).filter(Boolean);
+		return (
+			<article className='verse-card' key={`${lang}-${index}`}>
+				<span className='verse-number'>{String(index + 1).padStart(2, '0')}</span>
+				<div className='verse-lines'>
+					{lines.map((line, lineIndex) => <p key={lineIndex}>{line}</p>)}
+				</div>
+			</article>
+		);
+	};
+
 	return (
-		<>
+		<div className='site-shell'>
 			<div id='stars'></div>
 			<div id='stars2'></div>
 			<div id='stars3'></div>
-			<h3 className='chopai'>{translator[lang]?.doha || 'Doha'}</h3>
-			{dohaTop.map((para, index) => (
-				<pre className='chopai' key={index}>
-					<p>{para.split(',')[0]}</p>
-					<p>{para.split(',')[1]}</p>
-				</pre>
-			))}
-			<h3 className='chopai'>{translator[lang]?.chopai || 'Doha'}</h3>
-			{chopai.map((para, index) => (
-				<pre className='chopai' key={index}>
-					<p>{para.split(',')[0]}</p>
-					<p>{para.split(',')[1]}</p>
-				</pre>
-			))}
-			<h3 className='chopai'>{translator[lang]?.doha || 'Doha'}</h3>
-			{dohaBottom.map((para, index) => (
-				<pre className='chopai' key={index}>
-					<p>{para.split(',')[0]}</p>
-					<p>{para.split(',')[1]}</p>
-				</pre>
-			))}
+			<header className='topbar'>
+				<a className='brand' href='#top' aria-label='Hanuman Chalisa home'>
+					<span className='brand-mark'>ॐ</span>
+					<span><strong>Hanuman</strong><small>Chalisa</small></span>
+				</a>
+				<div className='topbar-actions'>
+					<label className='language-control'>
+						<span>Language</span>
+						<span className='select-shell'>
+							<select onChange={handleLangChange} value={lang} aria-label='Choose language'>
+								{languages.map((lan) => <option value={lan.value} key={lan.value}>{lan.lable}</option>)}
+							</select>
+							<span className='select-chevron' aria-hidden='true'>⌄</span>
+						</span>
+					</label>
+					<button className='audio__btn' onClick={handleButtonClick} aria-label={`${buttonText} devotional audio`}>
+						<span className={buttonText === 'Pause' ? 'pause-icon' : 'play-icon'} aria-hidden='true'></span>
+						{buttonText === 'Pause' ? 'Pause' : 'Listen'}
+					</button>
+				</div>
+			</header>
 
-			<select className='select__lang' onChange={handleLangChange} value={lang}>
-				{languages.map((lan) => (
-					<option value={lan.value} key={lan.value}>
-						{lan.lable}
-					</option>
-				))}
-			</select>
+			<main id='top' className='content-wrap'>
+				<section className='hero-panel'>
+					<div className='hero-copy'>
+						<p className='eyebrow'>A devotional reading</p>
+						<h1><span>श्री हनुमान</span><em>चालीसा</em></h1>
+						<p className='hero-description'>Read, listen, and recite the forty verses of Tulsidas' beloved hymn in your chosen language.</p>
+						<div className='hero-meta'><span><b>40</b> chaupais</span><span className='meta-dot'>·</span><span>Awadhi hymn</span></div>
+					</div>
+					<div className='hero-art' role='img' aria-label='Lord Hanuman devotional artwork'><div className='sun-disc'></div><div className='art-caption'>ॐ<br /><small>Jai Shri Ram</small></div></div>
+				</section>
+
+				<section className='reading-header'>
+					<div><p className='eyebrow'>Begin here</p><h2>{translator[lang]?.doha || 'Doha'}</h2></div>
+					<div className='reading-note'>Take a slow breath<br />and read with intention.</div>
+				</section>
+				<div className='doha-grid'>{dohaTop.map(renderVerse)}</div>
+
+				<section className='section-divider'><span>✦</span><h2>{translator[lang]?.chopai || 'Chopai'}</h2><span>✦</span></section>
+				<div className='verse-grid'>{chopai.map(renderVerse)}</div>
+
+				<section className='section-divider closing'><span>✦</span><h2>{translator[lang]?.doha || 'Doha'}</h2><span>✦</span></section>
+				<div className='doha-grid'>{dohaBottom.map(renderVerse)}</div>
+			</main>
 			<audio controls loop ref={audioRef} className='audio' autoPlay>
 				<source src={music} type='audio/mpeg' />
 				Your browser does not support the audio element.
 			</audio>
-			<button ref={btnRef} className='audio__btn' onClick={handleButtonClick}>
-				{buttonText}
-			</button>
 			<Footer text={footerText[lang]} />
-		</>
+		</div>
 	);
 };
 
