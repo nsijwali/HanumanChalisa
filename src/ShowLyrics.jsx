@@ -142,9 +142,12 @@ const ShowLyrics = () => {
 				<div className='topbar-actions'>
 					<label className='language-control'>
 						<span>Language</span>
-						<select onChange={handleLangChange} value={lang} aria-label='Choose language'>
-							{languages.map((lan) => <option value={lan.value} key={lan.value}>{lan.lable}</option>)}
-						</select>
+						<span className='select-shell'>
+							<select onChange={handleLangChange} value={lang} aria-label='Choose language'>
+								{languages.map((lan) => <option value={lan.value} key={lan.value}>{lan.lable}</option>)}
+							</select>
+							<span className='select-chevron' aria-hidden='true'>⌄</span>
+						</span>
 					</label>
 					<button className='audio__btn' onClick={handleButtonClick} aria-label={`${buttonText} devotional audio`}>
 						<span className={buttonText === 'Pause' ? 'pause-icon' : 'play-icon'} aria-hidden='true'></span>
@@ -157,7 +160,7 @@ const ShowLyrics = () => {
 				<section className='hero-panel'>
 					<div className='hero-copy'>
 						<p className='eyebrow'>A devotional reading</p>
-						<h1>श्री हनुमान<br /><em>चालीसा</em></h1>
+						<h1><span>श्री हनुमान</span><em>चालीसा</em></h1>
 						<p className='hero-description'>Read, listen, and recite the forty verses of Tulsidas' beloved hymn in your chosen language.</p>
 						<div className='hero-meta'><span><b>40</b> chaupais</span><span className='meta-dot'>·</span><span>Awadhi hymn</span></div>
 					</div>
