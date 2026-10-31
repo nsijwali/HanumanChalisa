@@ -1,15 +1,1 @@
-.footer {
-	height: 3rem;
-	background: transparent
-		radial-gradient(
-			closest-side at 50% 50%,
-			#383838 0%,
-			#1f1f1f 34%,
-			#000000 100%
-		)
-		0% 0% no-repeat padding-box;
-	scroll-behavior: smooth;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
+.footer { display:flex; align-items:center; justify-content:center; min-height:72px; padding:18px 20px; background:#2b1b16; color:rgba(255,246,233,.68); font-size:11px; letter-spacing:.04em; text-align:center; }
